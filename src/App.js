@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { lazy } from "react";
+import { Route, Routes } from "react-router-dom";
+import { SharedLayout } from "layout/SharedLayout";
+import "./App.css";
+
+
+const Home = lazy(() => import("pages/Home"));
+const Catalog = lazy(() => import("pages/Catalog"));
+const Favorite = lazy(() => import("pages/Favorite"));
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<Routes>
+			<Route path="/" element={<SharedLayout />}>
+				<Route index element={<Home />} />
+				<Route path="catalog" element={<Catalog />} />
+				<Route path="favorites" element={<Favorite />} />
+				{/* <Route path="catalog/:id" element={<ProductDetails />} /> */}
+				<Route path="*" element={<Home />} />
+			</Route>
+		</Routes>
+	);
 }
 
 export default App;
