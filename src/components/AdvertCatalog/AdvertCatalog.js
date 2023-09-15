@@ -1,7 +1,14 @@
 import { AdvertItem } from "components/AdvertItem/AdvertItem";
+import { Container } from "./AdvertCatalog.styled";
 
 const AdvertCatalog = ({ catalog }) => {
-	return catalog.map(item => <AdvertItem key={item.id} item={item} />);
+	return (
+		<Container>
+			{catalog.map(item => (
+				<AdvertItem key={item.id} item={item} />
+			))}
+		</Container>
+	);
 };
 
 export { AdvertCatalog };

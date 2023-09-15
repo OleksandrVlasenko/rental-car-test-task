@@ -1,8 +1,6 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { SharedLayout } from "layout/SharedLayout";
-import "./App.css";
-
 
 const Home = lazy(() => import("pages/Home"));
 const Catalog = lazy(() => import("pages/Catalog"));
@@ -14,7 +12,7 @@ function App() {
 			<Route path="/" element={<SharedLayout />}>
 				<Route index element={<Home />} />
 				<Route path="catalog" element={<Catalog />} />
-				<Route path="favorites" element={<Favorite />} />
+				<Route path="favorite" element={<Favorite />} />
 				{/* <Route path="catalog/:id" element={<ProductDetails />} /> */}
 				<Route path="*" element={<Home />} />
 			</Route>

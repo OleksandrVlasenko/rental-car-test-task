@@ -8,13 +8,12 @@ export const LinkStyled = styled(NavLink)`
 
 	padding-top: 12px;
 	padding-bottom: 12px;
-	width: 274px;
+	width: ${props => props.buttonWidth};
 
 	border-radius: 12px;
 	background-color: var(--primary-color);
 
 	font-size: 14px;
-	font-style: normal;
 	font-weight: 600;
 	line-height: 20px;
 	color: var(--secondary-text-color);

@@ -3,8 +3,10 @@ import {
 	StyledImage,
 	TitleContainer,
 	Title,
+	DescriptionContainer,
 	Description,
 } from "./AdvertItem.styled";
+import { Button } from "components/Button/Button";
 
 const AdvertItem = ({ item }) => {
 	const {
@@ -31,8 +33,15 @@ const AdvertItem = ({ item }) => {
 				</Title>
 				<Title>{rentalPrice}</Title>
 			</TitleContainer>
-      <Description>{city} | {country} | {rentalCompany}</Description>
-      <Description>{type} | {mileage} | {functionalities[0]}</Description>
+			<DescriptionContainer>
+				<Description>
+					{city} | {country} | {rentalCompany}
+				</Description>
+				<Description>
+					{type} | {mileage} | {functionalities[0]}
+				</Description>
+			</DescriptionContainer>
+			<Button buttonWidth={"274 px"}>Learn more</Button>
 		</Container>
 	);
 };
