@@ -56,10 +56,8 @@ const Catalog = ({ onOpenModal }) => {
 
   useEffect(() => {
     if (Object.keys(searchForm).length === 0) {
-      setPage(1);
       setTotal(catalog.length);
       setFilteredCatalog(catalog);
-      setFilteredCatalogWithPagination([]);
     } else {
       const filteredCatalog = catalog.filter((elem) => {
         return (
@@ -70,10 +68,9 @@ const Catalog = ({ onOpenModal }) => {
           (!searchForm.mileageTo || elem.mileage <= searchForm.mileageTo)
         );
       });
-      setPage(1);
+
       setTotal(filteredCatalog.length);
       setFilteredCatalog(filteredCatalog);
-      setFilteredCatalogWithPagination([]);
     }
   }, [catalog, searchForm]);
 
@@ -81,11 +78,11 @@ const Catalog = ({ onOpenModal }) => {
     if (total === 0) {
       return;
     }
-    const startIndex = (page - 1) * 8;
-    const endIndex = startIndex + 8 <= total ? startIndex + 8 : total;
+    const startIndex = 0;
+    const endIndex = (page - 1) * 8 + 8 <= total ? (page - 1) * 8 + 8 : total;
 
     const itemsToDisplay = filteredCatalog.slice(startIndex, endIndex);
-    setFilteredCatalogWithPagination((prev) => [...prev, ...itemsToDisplay]);
+    setFilteredCatalogWithPagination(itemsToDisplay);
   }, [page, total, filteredCatalog]);
 
   const changeFavoriteList = (id) => {
@@ -101,6 +98,7 @@ const Catalog = ({ onOpenModal }) => {
 
   const handleSearchForm = (searchForm) => {
     setSearchForm(searchForm);
+    setPage(1);
   };
 
   return (

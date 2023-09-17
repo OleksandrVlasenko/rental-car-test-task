@@ -8,12 +8,12 @@ import { Container } from "App.styled";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <BrowserRouter basename="/rental-car-test-task/">
       <Container>
         <App />
       </Container>
     </BrowserRouter>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
 reportWebVitals();
