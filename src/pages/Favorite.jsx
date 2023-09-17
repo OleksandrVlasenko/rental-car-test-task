@@ -13,7 +13,6 @@ const Favorite = ({ onOpenModal }) => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorite")) || [];
     setCatalog(storedFavorites);
     // setTotal(storedFavorites.length);
-    console.log("useEffect  result:", storedFavorites);
   }, []);
 
   const changeFavoriteList = (id) => {

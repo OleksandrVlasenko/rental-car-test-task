@@ -65,7 +65,7 @@ const AdvertItem = ({ item, changeFavoriteList, onOpenModal }) => {
         <Title fontSize="16px">
           {make} <span>{model}</span>, {year}
         </Title>
-        <Title fontSize="16px">{rentalPrice}</Title>
+        <Title fontSize="16px">${rentalPrice}</Title>
       </TitleContainer>
       <DescriptionContainer marginBottom="28px">
         <Description>

@@ -4,24 +4,22 @@ import { useEffect, useState } from "react";
 import { AdvertCatalog } from "components/AdvertCatalog/AdvertCatalog";
 import { LoadMore } from "components/LoadMore/LoadMore";
 import { Container } from "./Catalog.styled";
+import { SearchForm } from "components/SearchForm/SearchForm";
 
 const Catalog = ({ onOpenModal }) => {
   const [catalog, setCatalog] = useState([]);
+  const [filteredCatalog, setFilteredCatalog] = useState([]);
+  const [filteredCatalogWithPagination, setFilteredCatalogWithPagination] =
+    useState([]);
   const [page, setPage] = useState(1);
-  console.log("Catalog  page:", page)
   const [total, setTotal] = useState(0);
   const [isShownLoadMore, setIsShownLoadMore] = useState(false);
+  const [searchForm, setSearchForm] = useState({});
 
   useEffect(() => {
     async function getCatalog() {
       try {
-        // const { data } = await instance.get("/", {
-        //   params: { page, limit: 8 },
-        // });
-
-        //Цей запит роблю для того, щоб отримати загальну кількість елементів, так як я не знайшов, як з mockapi.io їх отримати в одному запиті
         const { data } = await instance.get("/");
-        setTotal(data.length);
 
         const storedFavorites =
           JSON.parse(localStorage.getItem("favorite")) || [];
@@ -39,8 +37,6 @@ const Catalog = ({ onOpenModal }) => {
           }
         });
 
-        console.log("useEffect  result:", data);
-
         setCatalog(data);
       } catch (error) {
         console.log(error.message);
@@ -50,13 +46,47 @@ const Catalog = ({ onOpenModal }) => {
   }, []);
 
   useEffect(() => {
-    if (catalog.length > 0) {
+    if (filteredCatalogWithPagination.length > 0) {
       setIsShownLoadMore(true);
     }
-    if (catalog.length === total) {
+    if (filteredCatalogWithPagination.length === total) {
       setIsShownLoadMore(false);
     }
-  }, [catalog, total]);
+  }, [filteredCatalogWithPagination, total]);
+
+  useEffect(() => {
+    if (Object.keys(searchForm).length === 0) {
+      setPage(1);
+      setTotal(catalog.length);
+      setFilteredCatalog(catalog);
+      setFilteredCatalogWithPagination([]);
+    } else {
+      const filteredCatalog = catalog.filter((elem) => {
+        return (
+          (!searchForm.carBrand || elem.make === searchForm.carBrand) &&
+          (!searchForm.pricePerHour ||
+            elem.rentalPrice <= searchForm.pricePerHour) &&
+          (!searchForm.mileageFrom || elem.mileage >= searchForm.mileageFrom) &&
+          (!searchForm.mileageTo || elem.mileage <= searchForm.mileageTo)
+        );
+      });
+      setPage(1);
+      setTotal(filteredCatalog.length);
+      setFilteredCatalog(filteredCatalog);
+      setFilteredCatalogWithPagination([]);
+    }
+  }, [catalog, searchForm]);
+
+  useEffect(() => {
+    if (total === 0) {
+      return;
+    }
+    const startIndex = (page - 1) * 8;
+    const endIndex = startIndex + 8 <= total ? startIndex + 8 : total;
+
+    const itemsToDisplay = filteredCatalog.slice(startIndex, endIndex);
+    setFilteredCatalogWithPagination((prev) => [...prev, ...itemsToDisplay]);
+  }, [page, total, filteredCatalog]);
 
   const changeFavoriteList = (id) => {
     const array = catalog.map((elem) => {
@@ -69,11 +99,15 @@ const Catalog = ({ onOpenModal }) => {
     setCatalog(array);
   };
 
+  const handleSearchForm = (searchForm) => {
+    setSearchForm(searchForm);
+  };
+
   return (
     <Container>
-      <p>Catalog Page</p>
+      <SearchForm onHandleSearchForm={handleSearchForm} />
       <AdvertCatalog
-        catalog={catalog}
+        catalog={filteredCatalogWithPagination}
         changeFavoriteList={changeFavoriteList}
         onOpenModal={onOpenModal}
       />

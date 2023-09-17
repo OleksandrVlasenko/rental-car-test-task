@@ -85,7 +85,7 @@ const Modal = ({
           Mileage: <span>{Number(mileage).toLocaleString("en-US")}</span>
         </RentalConditionDescription>
         <RentalConditionDescription>
-          Price: <span>{rentalPrice}</span>
+          Price: <span>{rentalPrice}$</span>
         </RentalConditionDescription>
       </RentalConditionsContainer>
       <Button toogleModal={toogleModal} buttonWidth="168px">Rental car</Button>
