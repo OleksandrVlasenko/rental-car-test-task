@@ -9,7 +9,7 @@ import { Container } from "App.styled";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/rental-car-test-task/">
+    <BrowserRouter basename="/rental-car-test-task">
       <Container>
         <App />
       </Container>
