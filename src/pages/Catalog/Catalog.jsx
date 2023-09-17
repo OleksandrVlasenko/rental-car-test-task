@@ -5,9 +5,10 @@ import { AdvertCatalog } from "components/AdvertCatalog/AdvertCatalog";
 import { LoadMore } from "components/LoadMore/LoadMore";
 import { Container } from "./Catalog.styled";
 
-const Catalog = () => {
+const Catalog = ({ onOpenModal }) => {
   const [catalog, setCatalog] = useState([]);
   const [page, setPage] = useState(1);
+  console.log("Catalog  page:", page)
   const [total, setTotal] = useState(0);
   const [isShownLoadMore, setIsShownLoadMore] = useState(false);
 
@@ -71,7 +72,11 @@ const Catalog = () => {
   return (
     <Container>
       <p>Catalog Page</p>
-      <AdvertCatalog catalog={catalog} changeFavoriteList={changeFavoriteList} />
+      <AdvertCatalog
+        catalog={catalog}
+        changeFavoriteList={changeFavoriteList}
+        onOpenModal={onOpenModal}
+      />
       {isShownLoadMore && <LoadMore setPage={setPage} />}
     </Container>
   );

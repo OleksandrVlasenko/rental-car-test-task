@@ -1,24 +1,26 @@
 import styled from "@emotion/styled";
-import { NavLink } from "react-router-dom";
 
-export const LinkStyled = styled(NavLink)`
-	display: flex;
-	justify-content: center;
-	align-items: center;
+const ButtonStyled = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-	padding-top: 12px;
-	padding-bottom: 12px;
-	width: ${props => props.buttonWidth};
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: ${(props) => props.buttonWidth};
 
-	border-radius: 12px;
-	background-color: var(--primary-color);
+  border-radius: 12px;
+	border: 0;
+  background-color: var(--primary-color);
 
-	font-size: 14px;
-	font-weight: 600;
-	line-height: 20px;
-	color: var(--secondary-text-color);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  color: var(--secondary-text-color);
 
-	&:hover {
-		background: var(--secondary-color);
-	}
+  &:hover {
+    background: var(--secondary-color);
+  }
 `;
+
+export { ButtonStyled };

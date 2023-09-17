@@ -10,7 +10,7 @@ import {
 } from "./AdvertItem.styled";
 import { Button } from "components/Button/Button";
 
-const AdvertItem = ({ item, changeFavoriteList }) => {
+const AdvertItem = ({ item, changeFavoriteList, onOpenModal }) => {
   const {
     id,
     img,
@@ -29,10 +29,10 @@ const AdvertItem = ({ item, changeFavoriteList }) => {
   const [city, country] = address.split(", ").slice(-2);
 
   const handleClickFavorite = () => {
-		const storedFavorites = JSON.parse(localStorage.getItem("favorite")) || [];
+    const storedFavorites = JSON.parse(localStorage.getItem("favorite")) || [];
 
-		if (!isFavorite) {
-      storedFavorites.unshift({...item, isFavorite: !isFavorite});
+    if (!isFavorite) {
+      storedFavorites.unshift({ ...item, isFavorite: !isFavorite });
     } else {
       const index = storedFavorites.findIndex((item) => item.id === id);
 
@@ -75,7 +75,13 @@ const AdvertItem = ({ item, changeFavoriteList }) => {
           {type} | {mileage} | {functionalities[0]}
         </Description>
       </DescriptionContainer>
-      <Button buttonWidth={"274 px"}>Learn more</Button>
+      <Button
+        buttonWidth={"274 px"}
+        toogleModal={() => onOpenModal(item)}
+        // item={item}
+      >
+        Learn more
+      </Button>
     </Container>
   );
 };

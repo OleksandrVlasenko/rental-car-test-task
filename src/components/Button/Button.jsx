@@ -1,11 +1,11 @@
-import { LinkStyled } from "./Button.styled";
+import { ButtonStyled } from "./Button.styled";
 
-const Button = ({ link, children, buttonWidth }) => {
-	return (
-		<LinkStyled to={link} buttonWidth={buttonWidth}>
-			{children}
-		</LinkStyled>
-	);
+const Button = ({ toogleModal, children, buttonWidth }) => {
+  return (
+    <ButtonStyled onClick={toogleModal} type="button" buttonWidth={buttonWidth}>
+      {children}
+    </ButtonStyled>
+  );
 };
 
 export { Button };

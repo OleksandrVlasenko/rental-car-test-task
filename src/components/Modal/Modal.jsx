@@ -1,5 +1,11 @@
 import { Button } from "components/Button/Button";
-import { Container, TitleContainer, MainDescription, RentalConditionsContainer, RentalConditionDescription } from "./Modal.styled";
+import {
+  Container,
+  TitleContainer,
+  MainDescription,
+  RentalConditionsContainer,
+  RentalConditionDescription,
+} from "./Modal.styled";
 import {
   Description,
   DescriptionContainer,
@@ -7,50 +13,29 @@ import {
   Title,
 } from "components/AdvertItem/AdvertItem.styled";
 
-const item = {
-  id: 9582,
-  year: 2008,
-  make: "Buick",
-  model: "Enclave",
-  type: "SUV",
-  img: "https://res.cloudinary.com/ditdqzoio/image/upload/v1687252635/cars/buick_enclave.jpg",
-  description:
-    "The Buick Enclave is a stylish and spacious SUV known for its comfortable ride and luxurious features.",
-  fuelConsumption: "10.5",
-  engineSize: "3.6L V6",
-  accessories: ["Leather seats", "Panoramic sunroof", "Premium audio system"],
-  functionalities: ["Power liftgate", "Remote start", "Blind-spot monitoring"],
-  rentalPrice: "$40",
-  rentalCompany: "Luxury Car Rentals",
-  address: "123 Example Street, Kiev, Ukraine",
-  rentalConditions:
-    "Minimum age: 25\nValid driver's license\nSecurity deposit required",
-  mileage: 5858,
-};
+const Modal = ({
+  toogleModal,
+  onItem: {
+    id,
+    img,
+    model,
+    make,
+    year,
+    rentalPrice,
+    accessories,
+    address,
+    type,
+    mileage,
+    functionalities,
+    fuelConsumption,
+    engineSize,
+    rentalConditions,
+  },
+}) => {
+  const [city, country] = address.split(", ").slice(-2);
+  const rentalConditionsArray =
+    rentalConditions && rentalConditions.split("\n");
 
-const {
-  id,
-  img,
-  model,
-  make,
-  year,
-  rentalPrice,
-  accessories,
-  address,
-  rentalCompany,
-  type,
-  mileage,
-  functionalities,
-  isFavorite,
-  fuelConsumption,
-  engineSize,
-  rentalConditions,
-} = item;
-
-const [city, country] = address.split(", ").slice(-2);
-const rentalConditionsArray = rentalConditions.split("\n");
-
-const Modal = () => {
   return (
     <Container>
       <StyledImage
@@ -103,7 +88,7 @@ const Modal = () => {
           Price: <span>{rentalPrice}</span>
         </RentalConditionDescription>
       </RentalConditionsContainer>
-      <Button buttonWidth="168px">Rental car</Button>
+      <Button toogleModal={toogleModal} buttonWidth="168px">Rental car</Button>
     </Container>
   );
 };

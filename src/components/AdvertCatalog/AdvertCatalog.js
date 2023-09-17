@@ -1,7 +1,11 @@
 import { AdvertItem } from "components/AdvertItem/AdvertItem";
 import { Container } from "./AdvertCatalog.styled";
 
-const AdvertCatalog = ({ catalog, changeFavoriteList }) => {
+const AdvertCatalog = ({
+  catalog,
+  changeFavoriteList,
+  onOpenModal,
+}) => {
   return (
     <Container>
       {catalog.map((item) => (
@@ -9,6 +13,7 @@ const AdvertCatalog = ({ catalog, changeFavoriteList }) => {
           key={item.id}
           item={item}
           changeFavoriteList={changeFavoriteList}
+          onOpenModal={onOpenModal}
         />
       ))}
     </Container>

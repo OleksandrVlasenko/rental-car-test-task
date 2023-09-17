@@ -1,4 +1,4 @@
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import { Link, Outlet } from "react-router-dom";
 
 import { ModalContainer } from "components/ModalContainer/ModalContainer";
@@ -6,13 +6,7 @@ import { Modal } from "components/Modal/Modal";
 
 // import { Link } from "./SharedLayout.styled";
 
-export const SharedLayout = () => {
-  const [isShowModal, setIsShowModal] = useState(true);
-
-  const toogleModal = () => {
-    setIsShowModal((isShowModal) => !isShowModal);
-  };
-
+export const SharedLayout = ({ onToogleModal, onItem, isShowModal }) => {
   return (
     <>
       <header>
@@ -26,8 +20,8 @@ export const SharedLayout = () => {
         <Outlet />
       </Suspense>
       {isShowModal && (
-        <ModalContainer onClose={toogleModal}>
-          <Modal />
+        <ModalContainer onClose={onToogleModal}>
+          <Modal onItem={onItem} toogleModal={onToogleModal} />
         </ModalContainer>
       )}
     </>

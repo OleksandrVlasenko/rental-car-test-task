@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AdvertCatalog } from "components/AdvertCatalog/AdvertCatalog";
 // import { LoadMore } from "components/LoadMore/LoadMore";
 
-const Favorite = () => {
+const Favorite = ({ onOpenModal }) => {
   const [catalog, setCatalog] = useState([]);
   // const [page, setPage] = useState(1);
   // const [total, setTotal] = useState(0);
@@ -37,8 +37,8 @@ const Favorite = () => {
       <AdvertCatalog
         catalog={catalog}
         changeFavoriteList={changeFavoriteList}
+        onOpenModal={onOpenModal}
       />
-      {/* {isShownLoadMore && <LoadMore setPage={setPage} />} */}
     </main>
   );
 };
