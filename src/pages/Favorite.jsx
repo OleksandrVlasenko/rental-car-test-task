@@ -1,44 +1,59 @@
 import { useEffect, useState } from "react";
 
 import { AdvertCatalog } from "components/AdvertCatalog/AdvertCatalog";
-// import { LoadMore } from "components/LoadMore/LoadMore";
+import { LoadMore } from "components/LoadMore/LoadMore";
+import { Container } from "pages/Catalog/Catalog.styled";
 
 const Favorite = ({ onOpenModal }) => {
   const [catalog, setCatalog] = useState([]);
-  // const [page, setPage] = useState(1);
-  // const [total, setTotal] = useState(0);
-  // const [isShownLoadMore, setIsShownLoadMore] = useState(false);
+  const [filteredCatalogWithPagination, setFilteredCatalogWithPagination] =
+    useState([]);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const [isShownLoadMore, setIsShownLoadMore] = useState(false);
 
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("favorite")) || [];
     setCatalog(storedFavorites);
-    // setTotal(storedFavorites.length);
+    setTotal(storedFavorites.length);
   }, []);
+
+  useEffect(() => {
+    if (filteredCatalogWithPagination.length > 0) {
+      setIsShownLoadMore(true);
+    }
+    if (filteredCatalogWithPagination.length === total) {
+      setIsShownLoadMore(false);
+    }
+  }, [filteredCatalogWithPagination, total]);
+
+  useEffect(() => {
+    if (total === 0) {
+      return;
+    }
+    const startIndex = 0;
+    const endIndex = (page - 1) * 8 + 8 <= total ? (page - 1) * 8 + 8 : total;
+
+    const itemsToDisplay = catalog.slice(startIndex, endIndex);
+    setFilteredCatalogWithPagination(itemsToDisplay);
+  }, [page, total, catalog]);
 
   const changeFavoriteList = (id) => {
     const array = catalog.filter((elem) => elem.id !== id);
-
+    setTotal(array.length);
     setCatalog(array);
   };
 
-  // useEffect(() => {
-  //   if (catalog.length > 0) {
-  //     setIsShownLoadMore(true);
-  //   }
-  //   if (catalog.length === total) {
-  //     setIsShownLoadMore(false);
-  //   }
-  // }, [catalog, total]);
-
   return (
-    <main>
+    <Container>
       <p>Favorite Page</p>
       <AdvertCatalog
-        catalog={catalog}
+        catalog={filteredCatalogWithPagination}
         changeFavoriteList={changeFavoriteList}
         onOpenModal={onOpenModal}
       />
-    </main>
+      {isShownLoadMore && <LoadMore setPage={setPage} />}
+    </Container>
   );
 };
 
