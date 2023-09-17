@@ -5,6 +5,8 @@ const Container = styled.section`
 	flex-wrap: wrap;
 	column-gap: 29px;
 	row-gap: 50px;
+
+	margin-bottom: 100px;
 `;
 
 export { Container };

@@ -1,14 +1,14 @@
 import { AdvertItem } from "components/AdvertItem/AdvertItem";
 import { Container } from "./AdvertCatalog.styled";
 
-const AdvertCatalog = ({ catalog, changeIsFavorite }) => {
+const AdvertCatalog = ({ catalog, changeFavoriteList }) => {
   return (
     <Container>
       {catalog.map((item) => (
         <AdvertItem
           key={item.id}
           item={item}
-          changeIsFavorite={changeIsFavorite}
+          changeFavoriteList={changeFavoriteList}
         />
       ))}
     </Container>

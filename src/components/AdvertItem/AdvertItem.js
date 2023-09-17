@@ -10,7 +10,7 @@ import {
 } from "./AdvertItem.styled";
 import { Button } from "components/Button/Button";
 
-const AdvertItem = ({ item, changeIsFavorite }) => {
+const AdvertItem = ({ item, changeFavoriteList }) => {
   const {
     id,
     img,
@@ -43,7 +43,7 @@ const AdvertItem = ({ item, changeIsFavorite }) => {
 
     localStorage.setItem("favorite", JSON.stringify(storedFavorites));
 
-    changeIsFavorite(id);
+    changeFavoriteList(id);
   };
 
   return (
@@ -55,14 +55,19 @@ const AdvertItem = ({ item, changeIsFavorite }) => {
           <FaRegHeart style={{ color: "var(--secondary-text-color)" }} />
         )}
       </IconsContainer>
-      <StyledImage src={img} alt={model} />
+      <StyledImage
+        src={img}
+        alt={model}
+        imageWidth="274px"
+        imageHeight="268px"
+      />
       <TitleContainer>
-        <Title>
+        <Title fontSize="16px">
           {make} <span>{model}</span>, {year}
         </Title>
-        <Title>{rentalPrice}</Title>
+        <Title fontSize="16px">{rentalPrice}</Title>
       </TitleContainer>
-      <DescriptionContainer>
+      <DescriptionContainer marginBottom="28px">
         <Description>
           {city} | {country} | {rentalCompany}
         </Description>

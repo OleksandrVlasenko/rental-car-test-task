@@ -30,8 +30,8 @@ const IconsContainer = styled.div`
 `;
 
 const StyledImage = styled.img`
-  width: 401px;
-  height: 268px;
+  width: ${(props) => props.imageWidth};
+  height: ${(props) => props.imageHeight};
   object-fit: cover;
 
   border-radius: 14px;
@@ -54,7 +54,7 @@ const TitleContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 16px;
+  font-size: ${(props) => props.fontSize};
   font-weight: 500;
   line-height: 24px;
 
@@ -71,7 +71,7 @@ const DescriptionContainer = styled.div`
   row-gap: 4px;
   flex-grow: 1;
 
-  margin-bottom: 28px;
+  margin-bottom: ${(props) => props.marginBottom};
 `;
 
 const Description = styled.p`
