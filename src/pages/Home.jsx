@@ -2,7 +2,7 @@ import { Container, Header, LinkStyled } from "./Pages.styled";
 
 const Home = () => {
   return (
-    <Container>
+    <Container alignItems="center"> 
       <Header>
         Drive Your Dreams – <br /> Rent Your Way to Adventure!
       </Header>

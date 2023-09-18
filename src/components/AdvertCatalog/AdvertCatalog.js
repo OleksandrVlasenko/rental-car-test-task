@@ -21,3 +21,4 @@ const AdvertCatalog = ({
 };
 
 export { AdvertCatalog };
+

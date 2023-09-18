@@ -39,7 +39,6 @@ const SearchForm = ({ onHandleSearchForm }) => {
     pricePerHour && (searchForm.pricePerHour = pricePerHour.value);
     mileageFrom !== "" && (searchForm.mileageFrom = Number(mileageFrom));
     mileageTo !== "" && (searchForm.mileageTo = Number(mileageTo));
-    console.log("handleSubmit  searchForm:", searchForm);
 
     onHandleSearchForm(searchForm);
   };

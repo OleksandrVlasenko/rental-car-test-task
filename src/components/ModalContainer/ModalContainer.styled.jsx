@@ -7,10 +7,6 @@ const ModalBackdrop = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(17, 17, 17, 0.4);
-
-  body & {
-    overflow: hidden;
-  }
 `;
 
 const ModalContent = styled.div`
