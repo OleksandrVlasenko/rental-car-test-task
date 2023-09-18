@@ -76,6 +76,7 @@ const Catalog = ({ onOpenModal }) => {
 
   useEffect(() => {
     if (total === 0) {
+      setFilteredCatalogWithPagination([]);
       return;
     }
     const startIndex = 0;
