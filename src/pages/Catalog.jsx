@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { AdvertCatalog } from "components/AdvertCatalog/AdvertCatalog";
 import { LoadMore } from "components/LoadMore/LoadMore";
-import { Container } from "./Catalog.styled";
+import { Container } from "./Pages.styled";
 import { SearchForm } from "components/SearchForm/SearchForm";
 
 const Catalog = ({ onOpenModal }) => {

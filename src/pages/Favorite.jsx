@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { AdvertCatalog } from "components/AdvertCatalog/AdvertCatalog";
 import { LoadMore } from "components/LoadMore/LoadMore";
-import { Container } from "pages/Catalog/Catalog.styled";
+import { Container } from "pages/Pages.styled";
 
 const Favorite = ({ onOpenModal }) => {
   const [catalog, setCatalog] = useState([]);

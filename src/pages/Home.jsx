@@ -1,9 +1,12 @@
+import { Container, Header, LinkStyled } from "./Pages.styled";
+
 const Home = () => {
-	return (
-		<main>
-			<p>Home Page</p>
-		</main>
-	);
+  return (
+    <Container>
+      <Header>Drive Your Dreams – <br/> Rent Your Way to Adventure!</Header>
+      <LinkStyled to={"catalog"}>Search cars</LinkStyled>
+    </Container>
+  );
 };
 
 export default Home;
