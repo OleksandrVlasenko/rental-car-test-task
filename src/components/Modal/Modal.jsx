@@ -1,6 +1,5 @@
 import { FaXmark } from "react-icons/fa6";
 
-import { Button } from "components/Button/Button";
 import {
   Container,
   TitleContainer,
@@ -15,6 +14,7 @@ import {
   StyledImage,
   Title,
 } from "components/AdvertItem/AdvertItem.styled";
+import { LinkStyled } from "pages/Pages.styled";
 
 const Modal = ({
   toogleModal,
@@ -92,9 +92,9 @@ const Modal = ({
           Price: <span>{rentalPrice}$</span>
         </RentalConditionDescription>
       </RentalConditionsContainer>
-      <Button toogleModal={toogleModal} buttonWidth="168px">
+      <LinkStyled to="tel:+380730000000" buttonWidth="168px">
         Rental car
-      </Button>
+      </LinkStyled>
     </Container>
   );
 };

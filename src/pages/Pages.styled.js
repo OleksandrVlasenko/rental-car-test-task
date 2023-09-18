@@ -24,7 +24,7 @@ const LinkStyled = styled(NavLink)`
   justify-content: center;
   align-items: center;
 
-  width: 274px;
+  width: ${(props) => props.buttonWidth};
   height: 44px;
 
   padding: 12px 0px;
