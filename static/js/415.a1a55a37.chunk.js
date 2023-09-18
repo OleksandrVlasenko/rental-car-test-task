@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkrental_car_test_task=self.webpackChunkrental_car_test_task||[]).push([[415],{5415:function(t,e,r){r.r(e);var s=r(6353),a=r(184);e.default=function(){return(0,a.jsxs)(s.W2,{alignItems:"center",children:[(0,a.jsxs)(s.h4,{children:["Drive Your Dreams \u2013 ",(0,a.jsx)("br",{})," Rent Your Way to Adventure!"]}),(0,a.jsx)(s.jJ,{to:"catalog",buttonWidth:"274px",children:"Search cars"})]})}}}]);
+//# sourceMappingURL=415.a1a55a37.chunk.js.map
