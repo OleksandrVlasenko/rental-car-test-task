@@ -1,3 +1,5 @@
+import { FaXmark } from "react-icons/fa6";
+
 import { Button } from "components/Button/Button";
 import {
   Container,
@@ -9,6 +11,7 @@ import {
 import {
   Description,
   DescriptionContainer,
+  IconsContainer,
   StyledImage,
   Title,
 } from "components/AdvertItem/AdvertItem.styled";
@@ -38,6 +41,9 @@ const Modal = ({
 
   return (
     <Container>
+      <IconsContainer onClick={toogleModal} fontSize={24} backdown="12px">
+        <FaXmark style={{ color: "var(--text-color)" }} />
+      </IconsContainer>
       <StyledImage
         src={img}
         alt={model}
@@ -88,7 +94,9 @@ const Modal = ({
           Price: <span>{rentalPrice}$</span>
         </RentalConditionDescription>
       </RentalConditionsContainer>
-      <Button toogleModal={toogleModal} buttonWidth="168px">Rental car</Button>
+      <Button toogleModal={toogleModal} buttonWidth="168px">
+        Rental car
+      </Button>
     </Container>
   );
 };

@@ -10,22 +10,22 @@ const Container = styled.div`
 
 const IconsContainer = styled.div`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: ${(props) => props.backdown};
+  right: ${(props) => props.backdown};
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: 22px;
-  height: 22px;
+  width: ${(props) => props.fontSize + 4}px;
+  height: ${(props) => props.fontSize + 4}px;
 
-  font-size: 18px;
+  font-size: ${(props) => props.fontSize}px;
 
   cursor: pointer;
 
   &:hover {
-    font-size: 22px;
+    font-size: ${(props) => props.fontSize + 4}px;
   }
 `;
 

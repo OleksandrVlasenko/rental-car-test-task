@@ -48,7 +48,7 @@ const AdvertItem = ({ item, changeFavoriteList, onOpenModal }) => {
 
   return (
     <Container>
-      <IconsContainer onClick={handleClickFavorite}>
+      <IconsContainer onClick={handleClickFavorite} fontSize={18} backdown="10px">
         {isFavorite ? (
           <FaHeart style={{ color: "var(--primary-color)" }} />
         ) : (
