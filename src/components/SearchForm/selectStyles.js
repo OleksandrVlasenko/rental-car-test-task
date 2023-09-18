@@ -36,6 +36,7 @@ const customStyles = {
   dropdownIndicator: (provided, state) => ({
     ...provided,
     color: "#121417",
+    cursor: "pointer",
   }),
 
   placeholder: (provided) => ({
