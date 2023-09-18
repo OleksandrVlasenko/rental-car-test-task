@@ -4,7 +4,6 @@ const Home = () => {
 	return (
 		<main>
 			<p>Home Page</p>
-			<Button buttonWidth="240px">Learn more</Button>
 		</main>
 	);
 };

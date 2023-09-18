@@ -1,21 +1,25 @@
-import { makes, priceList } from "constants/constants";
 import { useState } from "react";
+import Select from "react-select";
+
+import { customStyles } from "./selectStyles";
+import { makes, priceList } from "constants/constants";
+import {
+  Form,
+  InputsContainer,
+  InputBox,
+  Label,
+  SubmitButton,
+} from "./SearchForm.styled";
 
 const SearchForm = ({ onHandleSearchForm }) => {
-  const [carBrand, setCarBrand] = useState("");
-  const [pricePerHour, setPricePerHour] = useState("");
+  const [carBrand, setCarBrand] = useState(null);
+  const [pricePerHour, setPricePerHour] = useState(null);
   const [mileageFrom, setMileageFrom] = useState("");
   const [mileageTo, setMileageTo] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.currentTarget;
     switch (name) {
-      case "carBrand":
-        setCarBrand(value);
-        break;
-      case "pricePerHour":
-        setPricePerHour(value);
-        break;
       case "mileageFrom":
         setMileageFrom(value);
         break;
@@ -31,69 +35,78 @@ const SearchForm = ({ onHandleSearchForm }) => {
     e.preventDefault();
 
     const searchForm = {};
-    carBrand !== "" && (searchForm.carBrand = carBrand);
-    pricePerHour !== "" && (searchForm.pricePerHour = pricePerHour);
-    mileageFrom !== "" && (searchForm.mileageFrom = mileageFrom);
-    mileageTo !== "" && (searchForm.mileageTo = mileageTo);
+    carBrand && (searchForm.carBrand = carBrand.value);
+    pricePerHour && (searchForm.pricePerHour = pricePerHour.value);
+    mileageFrom !== "" && (searchForm.mileageFrom = Number(mileageFrom));
+    mileageTo !== "" && (searchForm.mileageTo = Number(mileageTo));
+    console.log("handleSubmit  searchForm:", searchForm);
 
     onHandleSearchForm(searchForm);
-
-    reset();
-  };
-
-  const reset = () => {
-    setCarBrand("");
-    setPricePerHour("");
-    setMileageFrom("");
-    setMileageTo("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="carBrand">
+    <Form onSubmit={handleSubmit}>
+      <Label htmlFor="carBrand">
         Car brand
-        <select name="carBrand" id="carBrand" onChange={handleChange}>
-          {makes.map((elem, index) => (
-            <option value={elem} key={index}>
-              {elem}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label htmlFor="pricePerHour">
+        <Select
+          name="carBrand"
+          id="carBrand"
+          placeholder="Enter the text"
+          defaultValue={carBrand}
+          onChange={setCarBrand}
+          options={makes}
+          isClearable
+          styles={customStyles}
+        />
+      </Label>
+      <Label htmlFor="pricePerHour">
         Price/ 1 hour
-        <select name="pricePerHour" id="pricePerHour" onChange={handleChange}>
-          {priceList.map((elem, index) => (
-            <option value={elem} key={index}>
-              {elem}
-            </option>
-          ))}
-        </select>
-      </label>
-      <label htmlFor="mileage">
+        <Select
+          name="pricePerHour"
+          id="pricePerHour"
+          placeholder="To $"
+          defaultValue={pricePerHour}
+          onChange={setPricePerHour}
+          options={priceList}
+          isClearable
+          styles={customStyles}
+        />
+      </Label>
+      <Label htmlFor="mileage">
         Сar mileage / km
-        <input
-          type="number"
-          name="mileageFrom"
-          onChange={handleChange}
-          value={mileageFrom}
-          id="mileage"
-          aria-label="Mileage From"
-        />
-        <input
-          type="number"
-          name="mileageTo"
-          onChange={handleChange}
-          value={mileageTo}
-          id="mileage"
-          aria-label="Mileage To"
-        />
-      </label>
+        <InputsContainer>
+          <InputBox
+            borderRadius="14px 0px 0px 14px"
+            borderRigth="1px solid rgba(138, 138, 137, 0.2);"
+          >
+            <span>From&nbsp;</span>
+            <input
+              type="number"
+              name="mileageFrom"
+              onChange={handleChange}
+              value={mileageFrom}
+              id="mileage"
+              aria-label="Mileage From"
+            />
+          </InputBox>
+          <InputBox borderRadius="0px 14px 14px 0px">
+            <span>To&nbsp;</span>
+            <input
+              type="number"
+              name="mileageTo"
+              onChange={handleChange}
+              value={mileageTo}
+              id="mileage"
+              aria-label="Mileage To"
+            />
+          </InputBox>
+        </InputsContainer>
+      </Label>
 
-      <button type="submit" aria-label="Submit">
+      <SubmitButton type="submit" aria-label="Submit">
         Search
-      </button>
-    </form>
+      </SubmitButton>
+    </Form>
   );
 };
 

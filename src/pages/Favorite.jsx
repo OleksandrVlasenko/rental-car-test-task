@@ -46,7 +46,6 @@ const Favorite = ({ onOpenModal }) => {
 
   return (
     <Container>
-      <p>Favorite Page</p>
       <AdvertCatalog
         catalog={filteredCatalogWithPagination}
         changeFavoriteList={changeFavoriteList}
