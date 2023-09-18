@@ -73,8 +73,6 @@ const Modal = ({
       <DescriptionContainer marginBottom="24px">
         <Description>{accessories.join(" | ")}</Description>
         <Description>{functionalities.join(" | ")}</Description>
-
-        <Description></Description>
       </DescriptionContainer>
       <MainDescription marginBottom="8px">Rental Conditions: </MainDescription>
       <RentalConditionsContainer>
